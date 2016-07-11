@@ -1,7 +1,7 @@
 {
-  "name": "ratchetjs",
+  "name": "ratchet",
   "version": "0.0.0",
-  "description": "RatchetJS",
+  "description": "Ratchet",
   "author": "Jay Hayes (iamvery.com)",
   "license": "MIT",
   "files": [
