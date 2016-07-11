@@ -6,5 +6,6 @@
   "license": "MIT",
   "files": [
     "lib"
-  ]
+  ],
+  "main": "lib/ratchet.js"
 }
