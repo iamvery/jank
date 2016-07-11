@@ -3,5 +3,8 @@
   "version": "0.0.0",
   "description": "RatchetJS",
   "author": "Jay Hayes (iamvery.com)",
-  "license": "MIT"
+  "license": "MIT",
+  "files": [
+    "lib"
+  ]
 }
