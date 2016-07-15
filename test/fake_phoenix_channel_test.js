@@ -10,7 +10,7 @@ describe('FakePhoenixChannel', () => {
 
       channel.on('does not matter', (payload) => {
         expect(payload).to.equal(data);
-        done()
+        done();
       });
 
       channel.synthesize(data);
