@@ -20,4 +20,17 @@ describe('FakePhoenixChannel', () => {
       channel.synthesize(data);
     });
   });
+
+  describe('onMessage', () => {
+    it('is invoked anytime data data arrives', (done) => {
+      var data = {};
+
+      channel.onMessage = function(_event, payload) {
+        expect(payload).to.equal(data);
+        done();
+      };
+
+      channel.synthesize(data);
+    });
+  });
 });
