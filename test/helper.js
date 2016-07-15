@@ -1,5 +1,5 @@
 var chai = require('chai');
 
 module.exports = {
-  expect: chai.expect
+  expect: chai.expect,
 };
