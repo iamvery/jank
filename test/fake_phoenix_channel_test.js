@@ -3,8 +3,8 @@ var {expect} = require('./helper');
 describe('FakePhoenixChannel', () => {
   var FakePhoenixChannel = require('./support/fake_phoenix_channel');
 
-  describe('#synthesize', () => {
-    it('manually invokes callback with provided data', (done) => {
+  describe('#on', () => {
+    it('is invoked when data arrives', (done) => {
       var data = {};
       var channel = new FakePhoenixChannel();
 
