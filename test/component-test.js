@@ -8,9 +8,10 @@ describe('component creation', () => {
     it('applies text data to node directly', () => {
       var node = new Node('div');
 
-      var {tag, content} = apply(node, 'lolwat');
+      var {tag, props, content} = apply(node, 'lolwat');
 
       expect(tag).to.eql('div');
+      expect(props).to.eql({});
       expect(content).to.eql(['lolwat']);
     });
 
@@ -20,8 +21,10 @@ describe('component creation', () => {
       var [first, last] = apply(node, ['lol', 'wat']);
 
       expect(first.tag).to.eql('div');
+      expect(first.props).to.eql({});
       expect(first.content).to.eql(['lol']);
       expect(last.tag).to.eql('div');
+      expect(last.props).to.eql({});
       expect(last.content).to.eql(['wat']);
     });
 
@@ -30,10 +33,12 @@ describe('component creation', () => {
       var child = new Node('div', [attr]);
       var node = new Node('div', [], [child]);
 
-      var {tag, content} = apply(node, {wat: 'hahaha'});
+      var {tag, props, content} = apply(node, {wat: 'hahaha'});
 
       expect(tag).to.eql('div');
+      expect(props).to.eql({});
       expect(content[0].tag).to.eql('div');
+      expect(content[0].props).to.eql({'data-prop': 'wat'});
       expect(content[0].content).to.eql(['hahaha']);
     });
   });
