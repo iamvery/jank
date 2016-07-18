@@ -1,8 +1,27 @@
 var {expect} = require('./helper');
 
 describe('component creation', () => {
-  var {createComponent} = require('../lib/ratchet/component');
+  var {apply, createComponent} = require('../lib/ratchet/component');
   var {Attribute, Node, Text} = require('./support/dom');
+
+  describe('apply', () => {
+    it('applies text data to node directly', () => {
+      var node = new Node('div');
+
+      var {content} = apply(node, 'lolwat');
+
+      expect(content).to.eql(['lolwat']);
+    });
+
+    it('applies array data by mapping over node', () => {
+      var node = new Node('div');
+
+      var [first, last] = apply(node, ['lol', 'wat']);
+
+      expect(first.content).to.eql(['lol']);
+      expect(last.content).to.eql(['wat']);
+    });
+  });
 
   describe('createComponent', () => {
     context('node is text', () => {
