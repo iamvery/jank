@@ -5,6 +5,7 @@
   "author": "Jay Hayes (iamvery.com)",
   "license": "MIT",
   "files": [
+    "index.js",
     "lib"
   ],
   "dependencies": {
