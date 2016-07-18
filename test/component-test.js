@@ -35,8 +35,17 @@ describe('component creation', () => {
     });
 
     context('node is scoped', () => {
-      it('applies text content to element');
-      it('recursively creates elements with scoped data');
+      it('applies text content to element', () => {
+        var attr = new Attribute('data-prop', 'lol');
+        var node = new Node('div', [attr]);
+        var data = {lol: 'wat'};
+
+        var {tag, props, content} = createComponent(node, data);
+
+        expect(tag).to.equal('div')
+        expect(props).to.eql({'data-prop': 'lol'});
+        expect(content).to.eql(['wat']);
+      });
     });
 
     context('node is not scoped', () => {
