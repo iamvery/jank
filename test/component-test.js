@@ -21,6 +21,16 @@ describe('component creation', () => {
       expect(first.content).to.eql(['lol']);
       expect(last.content).to.eql(['wat']);
     });
+
+    it('applies other data by recursively creating children', () => {
+      var attr = new Attribute('data-prop', 'wat');
+      var child = new Node('div', [attr]);
+      var node = new Node('div', [], [child]);
+
+      var {content} = apply(node, {wat: 'hahaha'});
+
+      expect(content[0].content).to.eql(['hahaha']);
+    });
   });
 
   describe('createComponent', () => {
