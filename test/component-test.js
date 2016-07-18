@@ -17,15 +17,19 @@ describe('component creation', () => {
     });
 
     it('applies array data by mapping over node', () => {
-      var node = new Node('div');
+      var node = new Node('article');
 
-      var [first, last] = apply(node, ['lol', 'wat']);
+      var {tag, props, content, data} = apply(node, ['lol', 'wat']);
+      var [first, last] = content;
 
-      expect(first.tag).to.eql('div');
+      expect(tag).to.eql('div');
+      expect(props).to.eql({});
+      expect(data).to.eql(['lol', 'wat']);
+      expect(first.tag).to.eql('article');
       expect(first.props).to.eql({});
       expect(first.content).to.eql(['lol']);
       expect(first.data).to.eql('lol');
-      expect(last.tag).to.eql('div');
+      expect(last.tag).to.eql('article');
       expect(last.props).to.eql({});
       expect(last.content).to.eql(['wat']);
       expect(last.data).to.eql('wat');
