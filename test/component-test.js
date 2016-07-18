@@ -41,6 +41,16 @@ describe('component creation', () => {
       expect(content[0].props).to.eql({'data-prop': 'wat'});
       expect(content[0].content).to.eql(['hahaha']);
     });
+
+    it('accepts 3rd argument used as transform for each application', () => {
+      var node = new Node('div');
+
+      var [tag, props, content] = apply(node, '', ({tag, props, content}) => [tag, props, content]);
+
+      expect(tag).to.eql('div');
+      expect(props).to.eql({});
+      expect(content).to.eql(['']);
+    });
   });
 
   describe('createComponent', () => {
