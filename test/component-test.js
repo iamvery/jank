@@ -1,7 +1,7 @@
 var {expect} = require('./helper');
 
-describe('component creation', () => {
-  var {apply, createComponent} = require('../lib/ratchet/component');
+describe('transformation', () => {
+  var {apply, transform} = require('../lib/ratchet/component');
   var {Attribute, Node, Text} = require('./support/dom');
 
   describe('apply', () => {
@@ -63,12 +63,12 @@ describe('component creation', () => {
     });
   });
 
-  describe('createComponent', () => {
+  describe('transform', () => {
     context('node is text', () => {
       it('returns text when node is text', () => {
         var node = new Text('foo');
 
-        var result = createComponent(node);
+        var result = transform(node);
 
         expect(result).to.equal('foo');
       });
@@ -80,7 +80,7 @@ describe('component creation', () => {
         var node = new Node('div', [attr]);
         var data = {lol: 'wat'};
 
-        var {tag, props, content} = createComponent(node, data);
+        var {tag, props, content} = transform(node, data);
 
         expect(tag).to.equal('div')
         expect(props).to.eql({'data-prop': 'lol'});
@@ -89,13 +89,13 @@ describe('component creation', () => {
     });
 
     context('node is not scoped', () => {
-      it('recursively creates elements with data', () => {
+      it('recursively transforms elements with data', () => {
         var chattr = new Attribute('data-prop', 'wat');
         var child = new Node('div', [chattr]);
         var node = new Node('div', [], [child]);
         var data = {wat: 'hahaha'};
 
-        var {tag, props, content} = createComponent(node, data);
+        var {tag, props, content} = transform(node, data);
 
         expect(tag).to.equal('div')
         expect(props).to.eql({});
