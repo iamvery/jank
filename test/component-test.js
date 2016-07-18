@@ -8,11 +8,12 @@ describe('component creation', () => {
     it('applies text data to node directly', () => {
       var node = new Node('div');
 
-      var {tag, props, content} = apply(node, 'lolwat');
+      var {tag, props, content, data} = apply(node, 'lolwat');
 
       expect(tag).to.eql('div');
       expect(props).to.eql({});
       expect(content).to.eql(['lolwat']);
+      expect(data).to.eql('lolwat')
     });
 
     it('applies array data by mapping over node', () => {
@@ -23,9 +24,11 @@ describe('component creation', () => {
       expect(first.tag).to.eql('div');
       expect(first.props).to.eql({});
       expect(first.content).to.eql(['lol']);
+      expect(first.data).to.eql('lol');
       expect(last.tag).to.eql('div');
       expect(last.props).to.eql({});
       expect(last.content).to.eql(['wat']);
+      expect(last.data).to.eql('wat');
     });
 
     it('applies other data by recursively creating children', () => {
@@ -33,23 +36,26 @@ describe('component creation', () => {
       var child = new Node('div', [attr]);
       var node = new Node('div', [], [child]);
 
-      var {tag, props, content} = apply(node, {wat: 'hahaha'});
+      var {tag, props, content, data} = apply(node, {wat: 'hahaha'});
 
       expect(tag).to.eql('div');
       expect(props).to.eql({});
+      expect(data).to.eql({wat: 'hahaha'});
       expect(content[0].tag).to.eql('div');
       expect(content[0].props).to.eql({'data-prop': 'wat'});
       expect(content[0].content).to.eql(['hahaha']);
+      expect(content[0].data).to.eql('hahaha');
     });
 
     it('accepts 3rd argument used as transform for each application', () => {
       var node = new Node('div');
 
-      var [tag, props, content] = apply(node, '', ({tag, props, content}) => [tag, props, content]);
+      var [tag, props, content, data] = apply(node, '', ({tag, props, content, data}) => [tag, props, content, data]);
 
       expect(tag).to.eql('div');
       expect(props).to.eql({});
       expect(content).to.eql(['']);
+      expect(data).to.eql('');
     });
   });
 
