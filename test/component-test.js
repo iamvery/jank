@@ -59,7 +59,20 @@ describe('component creation', () => {
     });
 
     context('node is not scoped', () => {
-      it('recursively creates elements with data');
+      it('recursively creates elements with data', () => {
+        var chattr = new Attribute('data-prop', 'wat');
+        var child = new Node('div', [chattr]);
+        var node = new Node('div', [], [child]);
+        var data = {wat: 'hahaha'};
+
+        var {tag, props, content} = createComponent(node, data);
+
+        expect(tag).to.equal('div')
+        expect(props).to.eql({});
+        expect(content[0].tag).to.equal('div');
+        expect(content[0].props).to.eql({'data-prop': 'wat'});
+        expect(content[0].content).to.eql(['hahaha']);
+      });
     });
   });
 });
