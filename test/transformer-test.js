@@ -1,7 +1,7 @@
 var {expect} = require('./helper');
 
 describe('transformation', () => {
-  var {apply, transform} = require('../lib/ratchet/component');
+  var {apply, transform} = require('../lib/ratchet/transformer');
   var {Attribute, Node, Text} = require('./support/dom');
 
   describe('apply', () => {
