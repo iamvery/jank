@@ -1,7 +1,7 @@
 {
-  "name": "ratchet",
+  "name": "ratchetjs",
   "version": "0.1.0",
-  "description": "Ratchet",
+  "description": "Transform view with data.",
   "author": "Jay Hayes (iamvery.com)",
   "license": "MIT",
   "files": [
