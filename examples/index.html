@@ -4,10 +4,24 @@
     <meta charset="utf-8">
   </head>
   <body>
-    <article data-prop="post" data-component>
-      <h2 data-prop="title">title</h2>
-      <p data-prop="body">body</p>
-    </article>
+    <div data-prop="counter" data-component>
+      <span data-prop="count">0</span>
+    </div>
+    <span data-prop="count" data-component>0</span>
+    <div>
+      <article data-prop="post" data-component>
+        <!-- this is a post -->
+        <h2 data-prop="title">title</h2>
+        <p data-prop="body">body</p>
+      </article>
+    </div>
+
+    <hr>
+
+    <div data-prop="post" data-component>
+      <h1 data-prop="title">title</h1>
+      <p><strong data-prop="body">body</strong></p>
+    </div>
     <script src="bundle.js"></script>
   </body>
 </html>

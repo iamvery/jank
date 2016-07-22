@@ -34,6 +34,22 @@ describe('Phoenix adapter', () => {
       channel.synthesize(data);
     });
 
+    it('invokes all callbacks', (done) => {
+      var count = 0;
+      adapter.init(() => {
+        count++;
+      });
+
+      adapter.init(() => {
+        count++;
+        done();
+      });
+
+      channel.synthesize();
+
+      expect(count).to.eql(2);
+    });
+
     it('is only invoked once', (done) => {
       adapter.init(() => {
         done() // fails if done is called more than once

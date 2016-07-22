@@ -2,7 +2,7 @@ var {expect} = require('./helper');
 
 describe('transformation', () => {
   var {apply, transform} = require('../lib/ratchet/transformer');
-  var {Attribute, Node, Text} = require('./support/dom');
+  var {Attribute, Node, Text, Comment} = require('./support/dom');
 
   describe('apply', () => {
     it('applies text data to node directly', () => {
@@ -71,6 +71,16 @@ describe('transformation', () => {
         var result = transform(node);
 
         expect(result).to.equal('foo');
+      });
+    });
+
+    context('node is comment', () => {
+      it('returns nothing', () => {
+        var node = new Comment();
+
+        var result = transform(node);
+
+        expect(result).to.equal(null);
       });
     });
 

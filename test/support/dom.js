@@ -21,4 +21,8 @@ var Text = function(content) {
   this.nodeType = 3; // https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType
 };
 
-module.exports = {Attribute, Node, Text};
+var Comment = function() {
+  this.nodeType = 8;
+};
+
+module.exports = {Attribute, Node, Text, Comment};
