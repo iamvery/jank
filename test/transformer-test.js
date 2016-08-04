@@ -16,6 +16,16 @@ describe('transformation', () => {
       expect(data).to.eql('lolwat')
     });
 
+    it('applies attributes data to node properties', () => {
+      var node = new Node('div');
+
+      var {tag, props, content, data} = apply(node, {_attrs_: true, lol: 'wat'});
+
+      expect(tag).to.eql('div');
+      expect(props).to.eql({lol: 'wat'});
+      expect(content).to.eql([]);
+    });
+
     it('applies array data by mapping over node', () => {
       var node = new Node('article');
 
