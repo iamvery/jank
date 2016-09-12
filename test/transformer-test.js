@@ -36,6 +36,18 @@ describe('transformation', () => {
       expect(content).to.eql(['foo']);
     });
 
+    it('applies combination data recursively', () => {
+      var attr = new Attribute('data-prop', 'wat');
+      var child = new Node('div', [attr])
+      var node = new Node('div', [], [child]);
+
+      var {tag, props, content} = apply(node, {content: {wat: 'haha'}, attrs: {_attrs_: true, lol: 'wat'}});
+      expect(tag).to.eql('div');
+      expect(props).to.eql({lol: 'wat'});
+      expect(content[0].tag).to.eql('div');
+      expect(content[0].content).to.eql(['haha']);
+    });
+
     it('applies array data by mapping over node', () => {
       var node = new Node('article');
 
