@@ -29,7 +29,7 @@ describe('transformation', () => {
     it('applies combination text content and attribute data to node', () => {
       var node = new Node('div');
 
-      var {tag, props, content, data} = apply(node, {content: 'foo', attrs: {_attrs_: true, lol: 'wat'}});
+      var {tag, props, content} = apply(node, {content: 'foo', attrs: {_attrs_: true, lol: 'wat'}});
 
       expect(tag).to.eql('div');
       expect(props).to.eql({lol: 'wat'});
