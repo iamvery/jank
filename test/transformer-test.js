@@ -162,5 +162,24 @@ describe('transformation', () => {
         expect(content[0].content).to.eql(['hahaha']);
       });
     });
+
+    it('accepts optional function to apply at each tranform', () => {
+      var attr = new Attribute('data-prop', 'lol');
+      var chattr = new Attribute('data-prop', 'wat');
+      var child = new Node('span', [chattr]);
+      var node = new Node('div', [attr], [child]);
+      var data = {lol: {content: {wat: 'haha'}, attrs: {_attrs_: true, hah: 'ok'}}}
+      var f = ({tag, props, content}) => [tag, props, content];
+
+      var [tag, props, content] = transform(node, data, f);
+      console.log(tag, props, content);
+
+      expect(tag).to.eql('div');
+      expect(props).to.eql({'data-prop': 'lol', hah: 'ok'});
+      var [tag, props, content] = content[0];
+      expect(tag).to.eql('span');
+      expect(props).to.eql({'data-prop': 'wat'});
+      expect(content).to.eql('haha');
+    });
   });
 });
