@@ -17,13 +17,14 @@ describe('transformation', () => {
     });
 
     it('applies attributes data to node properties', () => {
-      var node = new Node('div');
+      var child = new Node('span');
+      var node = new Node('div', [], [child]);
 
       var {tag, props, content, data} = apply(node, {_attrs_: true, lol: 'wat'});
 
       expect(tag).to.eql('div');
       expect(props).to.eql({lol: 'wat'});
-      expect(content).to.eql([]);
+      expect(content[0].tag).to.eql('span');
     });
 
     it('applies combination text content and attribute data to node', () => {
