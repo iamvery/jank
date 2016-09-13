@@ -99,17 +99,6 @@ describe('transformation', () => {
       expect(content[0].content).to.eql(['hahaha']);
       expect(content[0].data).to.eql('hahaha');
     });
-
-    it('accepts 3rd argument used as transform for each application', () => {
-      var node = new Node('div');
-
-      var [tag, props, content, data] = apply(node, '', ({tag, props, content, data}) => [tag, props, content, data]);
-
-      expect(tag).to.eql('div');
-      expect(props).to.eql({});
-      expect(content).to.eql(['']);
-      expect(data).to.eql('');
-    });
   });
 
   describe('transform', () => {
@@ -162,25 +151,6 @@ describe('transformation', () => {
         expect(content[0].props).to.eql({'data-prop': 'wat'});
         expect(content[0].content).to.eql(['hahaha']);
       });
-    });
-
-    it('accepts optional function to apply at each tranform', () => {
-      var attr = new Attribute('data-prop', 'lol');
-      var chattr = new Attribute('data-prop', 'wat');
-      var child = new Node('span', [chattr]);
-      var node = new Node('div', [attr], [child]);
-      var data = {lol: {content: {wat: 'haha'}, attrs: {_attrs_: true, hah: 'ok'}}}
-      var f = ({tag, props, content}) => [tag, props, content];
-
-      var [tag, props, content] = transform(node, data, f);
-      console.log(tag, props, content);
-
-      expect(tag).to.eql('div');
-      expect(props).to.eql({'data-prop': 'lol', hah: 'ok'});
-      var [tag, props, content] = content[0];
-      expect(tag).to.eql('span');
-      expect(props).to.eql({'data-prop': 'wat'});
-      expect(content).to.eql('haha');
     });
   });
 });
