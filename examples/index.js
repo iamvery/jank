@@ -1,4 +1,4 @@
-var {Ratchet} = require('../index.js');
+var {Jank} = require('../index.js');
 
 var data = {
   counter: {count: "123"},
@@ -12,4 +12,4 @@ var data = {
 var fake = {data: ()=>{}};
 var channelInit = () => fake;
 
-Ratchet.init({data, channelInit});
+Jank.init({data, channelInit});

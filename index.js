@@ -1,4 +1,4 @@
-var Ratchet = require('./lib/ratchet');
-var PhoenixAdapter = require('./lib/ratchet/adapters/phoenix');
+var Jank = require('./lib/jank');
+var PhoenixAdapter = require('./lib/jank/adapters/phoenix');
 
-module.exports = {Ratchet: Ratchet, PhoenixAdapter: PhoenixAdapter};
+module.exports = {Jank: Jank, PhoenixAdapter: PhoenixAdapter};
