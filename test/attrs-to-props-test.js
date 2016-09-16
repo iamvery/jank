@@ -1,9 +1,8 @@
 var {expect} = require('./helper');
 var {Attribute} = require('./support/dom');
+var attrsToProps = require('../lib/jank/attrs-to-props');
 
 describe('attrsToProps', () => {
-  var attrsToProps = require('../lib/jank/attrs-to-props');
-
   it('folds collection of attribute nodes into an object of k/v pairs', () => {
     var attrs = [
       new Attribute('foo', 'bar'),
