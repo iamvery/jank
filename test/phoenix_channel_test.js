@@ -2,7 +2,7 @@ var {expect} = require('./helper');
 
 describe('Phoenix adapter', () => {
   var FakePhoenixChannel = require('./support/fake_phoenix_channel');
-  var PhoenixAdapter = require('../lib/ratchet/adapters/phoenix');
+  var PhoenixAdapter = require('../lib/jank/adapters/phoenix');
   var channel, adapter;
 
   beforeEach(() => {

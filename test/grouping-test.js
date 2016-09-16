@@ -1,7 +1,7 @@
 var {expect} = require('./helper');
 
 describe('grouping', () => {
-  var ElementGroups = require('../lib/ratchet/grouping');
+  var ElementGroups = require('../lib/jank/grouping');
   var {Attribute, Node} = require('./support/dom');
 
   describe('#add', () => {

@@ -2,7 +2,7 @@ var {expect} = require('./helper');
 var {Attribute} = require('./support/dom');
 
 describe('attrsToProps', () => {
-  var attrsToProps = require('../lib/ratchet/attrs-to-props');
+  var attrsToProps = require('../lib/jank/attrs-to-props');
 
   it('folds collection of attribute nodes into an object of k/v pairs', () => {
     var attrs = [
