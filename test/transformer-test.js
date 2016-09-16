@@ -15,14 +15,14 @@ describe('transformation', () => {
       expect(content).to.eql(['lolwat']);
     });
 
-    it('applies attributes data to node properties', () => {
+    it('applies normalized attributes data to node properties', () => {
       var child = new Node('span');
       var node = new Node('div', [], [child]);
 
-      var {tag, props, content} = apply(node, {_attrs_: true, lol: 'wat'});
+      var {tag, props, content} = apply(node, {_attrs_: true, class: 'wat'});
 
       expect(tag).to.eql('div');
-      expect(props).to.eql({lol: 'wat'});
+      expect(props).to.eql({className: 'wat'});
       expect(content[0].tag).to.eql('span');
     });
 
