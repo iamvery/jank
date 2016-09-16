@@ -8,31 +8,60 @@ describe('transformation', () => {
     it('applies text data to node directly', () => {
       var node = new Node('div');
 
-      var {tag, props, content, data} = apply(node, 'lolwat');
+      var {tag, props, content} = apply(node, 'lolwat');
 
       expect(tag).to.eql('div');
       expect(props).to.eql({});
       expect(content).to.eql(['lolwat']);
-      expect(data).to.eql('lolwat')
+    });
+
+    it('applies normalized attributes data to node properties', () => {
+      var child = new Node('span');
+      var node = new Node('div', [], [child]);
+
+      var {tag, props, content} = apply(node, {_attrs_: true, class: 'wat'});
+
+      expect(tag).to.eql('div');
+      expect(props).to.eql({className: 'wat'});
+      expect(content[0].tag).to.eql('span');
+    });
+
+    it('applies combination text content and attribute data to node', () => {
+      var node = new Node('div');
+
+      var {tag, props, content} = apply(node, {content: 'foo', attrs: {_attrs_: true, lol: 'wat'}});
+
+      expect(tag).to.eql('div');
+      expect(props).to.eql({lol: 'wat'});
+      expect(content).to.eql(['foo']);
+    });
+
+    it('applies combination data recursively', () => {
+      var attr = new Attribute('data-prop', 'wat');
+      var child = new Node('div', [attr])
+      var node = new Node('div', [], [child]);
+
+      var {tag, props, content} = apply(node, {content: {wat: 'haha'}, attrs: {_attrs_: true, lol: 'wat'}});
+      expect(tag).to.eql('div');
+      expect(props).to.eql({lol: 'wat'});
+      expect(content[0].tag).to.eql('div');
+      expect(content[0].content).to.eql(['haha']);
     });
 
     it('applies array data by mapping over node', () => {
       var node = new Node('article');
 
-      var {tag, props, content, data} = apply(node, ['lol', 'wat']);
+      var {tag, props, content} = apply(node, ['lol', 'wat']);
       var [first, last] = content;
 
       expect(tag).to.eql('div');
       expect(props).to.eql({});
-      expect(data).to.eql(['lol', 'wat']);
       expect(first.tag).to.eql('article');
       expect(first.props).to.eql({});
       expect(first.content).to.eql(['lol']);
-      expect(first.data).to.eql('lol');
       expect(last.tag).to.eql('article');
       expect(last.props).to.eql({});
       expect(last.content).to.eql(['wat']);
-      expect(last.data).to.eql('wat');
     });
 
     it('applies other data by recursively creating children', () => {
@@ -40,26 +69,27 @@ describe('transformation', () => {
       var child = new Node('div', [attr]);
       var node = new Node('div', [], [child]);
 
-      var {tag, props, content, data} = apply(node, {wat: 'hahaha'});
+      var {tag, props, content} = apply(node, {wat: 'hahaha'});
 
       expect(tag).to.eql('div');
       expect(props).to.eql({});
-      expect(data).to.eql({wat: 'hahaha'});
       expect(content[0].tag).to.eql('div');
       expect(content[0].props).to.eql({'data-prop': 'wat'});
       expect(content[0].content).to.eql(['hahaha']);
-      expect(content[0].data).to.eql('hahaha');
     });
 
-    it('accepts 3rd argument used as transform for each application', () => {
-      var node = new Node('div');
+    it('applies combination content and attributes by recursively creating children and updating node props', () => {
+      var attr = new Attribute('data-prop', 'wat');
+      var child = new Node('div', [attr]);
+      var node = new Node('div', [], [child]);
 
-      var [tag, props, content, data] = apply(node, '', ({tag, props, content, data}) => [tag, props, content, data]);
+      var {tag, props, content} = apply(node, {content: {wat: 'hahaha'}, attrs: {_attrs_: true, lol: 'wat'}});
 
       expect(tag).to.eql('div');
-      expect(props).to.eql({});
-      expect(content).to.eql(['']);
-      expect(data).to.eql('');
+      expect(props).to.eql({lol: 'wat'});
+      expect(content[0].tag).to.eql('div');
+      expect(content[0].props).to.eql({'data-prop': 'wat'});
+      expect(content[0].content).to.eql(['hahaha']);
     });
   });
 
