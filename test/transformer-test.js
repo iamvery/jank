@@ -29,7 +29,7 @@ describe('transformation', () => {
     it('applies combination text content and attribute data to node', () => {
       var node = new Node('div');
 
-      var {tag, props, content} = apply(node, {content: 'foo', attrs: {_attrs_: true, lol: 'wat'}});
+      var {tag, props, content} = apply(node, {_content_: 'foo', _attrs_: {_attrs_: true, lol: 'wat'}});
 
       expect(tag).to.eql('div');
       expect(props).to.eql({lol: 'wat'});
@@ -41,7 +41,7 @@ describe('transformation', () => {
       var child = new Node('div', [attr])
       var node = new Node('div', [], [child]);
 
-      var {tag, props, content} = apply(node, {content: {wat: 'haha'}, attrs: {_attrs_: true, lol: 'wat'}});
+      var {tag, props, content} = apply(node, {_content_: {wat: 'haha'}, _attrs_: {_attrs_: true, lol: 'wat'}});
       expect(tag).to.eql('div');
       expect(props).to.eql({lol: 'wat'});
       expect(content[0].tag).to.eql('div');
@@ -83,7 +83,7 @@ describe('transformation', () => {
       var child = new Node('div', [attr]);
       var node = new Node('div', [], [child]);
 
-      var {tag, props, content} = apply(node, {content: {wat: 'hahaha'}, attrs: {_attrs_: true, lol: 'wat'}});
+      var {tag, props, content} = apply(node, {_content_: {wat: 'hahaha'}, _attrs_: {_attrs_: true, lol: 'wat'}});
 
       expect(tag).to.eql('div');
       expect(props).to.eql({lol: 'wat'});
