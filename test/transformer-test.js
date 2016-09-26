@@ -15,6 +15,16 @@ describe('transformation', () => {
       expect(content).to.eql(['lolwat']);
     });
 
+    it('applies numeric data to node directly', () => {
+      var node = new Node('div');
+
+      var {tag, props, content} = apply(node, 123);
+
+      expect(tag).to.eql('div');
+      expect(props).to.eql({});
+      expect(content).to.eql([123]);
+    });
+
     it('applies normalized attributes data to node properties', () => {
       var child = new Node('span');
       var node = new Node('div', [], [child]);
