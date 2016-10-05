@@ -27,6 +27,17 @@ It bolts on to your traditional, server-rendered architecture.
 
 ![jank bolts on](images/overview.jpg)
 
+## Release
+
+1. Bump the version in `package.json`.
+1. Add version to CHANGELOG.
+1. Commit version with Git tag `vX.X.X`.
+1. Publish to npm:
+
+   ```
+   $ npm publish
+   ```
+
 
 [ph-jank]: https://github.com/iamvery/phoenix_jank
 [ratchet]: https://github.com/iamvery/ratchet
