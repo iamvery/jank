@@ -6,6 +6,8 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.2.0]
+
 ### Added
 - Add support for attr and combo data (https://github.com/iamvery/jank/pull/7 https://github.com/iamvery/jank/pull/14)
 
@@ -16,4 +18,5 @@ project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.1.0] - 2015-12-03
 Renamed ratchetjs to jank.
 
-[Unreleased]: https://github.com/iamvery/jank/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/iamvery/jank/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/iamvery/jank/compare/v0.1.0...0.2.0
